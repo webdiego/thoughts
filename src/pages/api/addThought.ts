@@ -1,35 +1,33 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { prisma } from '../../../prisma/prisma.client'
+import { getServerSession } from 'next-auth'
 import { authOptions } from '../api/auth/[...nextauth]'
-import { getServerSession } from 'next-auth/next'
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const session = await getServerSession(req, res, authOptions)
-  console.log('session', session)
 
-  if (!session) {
+  if (!session || !session.user || !session.user.email) {
     res.status(401).json({ message: 'You must be logged in.' })
     return
   }
-  const { email } = req.body
-  console.log('email', email)
+
+  const { thought } = req.body.data
   const user = await prisma.user.findUnique({
     where: {
-      email,
+      email: session.user.email,
     },
   })
 
   if (!user) return res.status(404).json({ message: 'User not found' })
 
-  // Get all posts from the user
-  const posts = await prisma.posts.findMany({
-    where: {
+  await prisma.thoughts.create({
+    data: {
       userId: user.id,
+      thought,
     },
   })
 
-  res.status(200).json({ posts })
+  res.status(200).json({ message: 'Post created' })
 }

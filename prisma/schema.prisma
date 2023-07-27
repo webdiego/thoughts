@@ -10,17 +10,18 @@ model User {
   id            String    @id @default(cuid())
   name          String?
   email         String   @unique
-  emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
-  posts         Posts[]
-  recipes       Recipe[]
+  thoughts      Thoughts[]
 }
-model Posts {
+model Thoughts {
   id    Int     @id @default(autoincrement())
-  post String
+  thought String
+  createdAt DateTime @default(now())
+  place String?
   userId String
+  feel String?
   user  User    @relation(fields: [userId], references: [id])
 }
 
@@ -50,25 +51,4 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model Recipe{
-   id           String   @id @default(cuid())
-    name         String
-    description  String
-    ingredients  Ingredients[]
-    price        Int
-    userId       String
-    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model Ingredients {
-   id           String   @id @default(cuid())
-    name         String
-    quantity     Int
-    unit         String
-    price        Int
-    recipeId     String
-    recipe       Recipe   @relation(fields: [recipeId], references: [id])
-
 }

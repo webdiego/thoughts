@@ -1,12 +1,27 @@
 import React from 'react'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
+import ThinkIcon from 'public/think.svg'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 export default function Navbar({ session }: { session: any }) {
+  const router = useRouter()
   return (
-    <div className="bg-[#007AA0] py-3 ">
+    <div className="bg-white py-3 sticky z-[200] border-b shadow-sm">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 ">
-        <div className="w-[40px] h-[40px] rounded-full bg-orange-400" />
-        <div>
+        <div className="w-1/3 flex items-center justify-start">
+          <Link href="/">
+            <Image src={ThinkIcon} width={32} height={32} alt="think" />
+          </Link>
+        </div>
+        <div className="w-1/3 flex items-center justify-center">
+          {session && session.user && router.pathname !== '/dashboard' && (
+            <Link href="/dashboard" className="font-semibold">
+              Dashboard
+            </Link>
+          )}
+        </div>
+        <div className="w-1/3 flex items-center justify-end">
           {session && session.user ? (
             <div className="flex items-center space-x-5">
               {/* <p className="text-sm">{session.user.email}</p> */}
