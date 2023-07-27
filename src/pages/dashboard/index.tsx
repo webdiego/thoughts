@@ -50,49 +50,68 @@ export default function Dashboard({ allThoughts }: { allThoughts: any }) {
       <Drawer>
         <main className={`flex min-h-screen flex-col max-w-7xl mx-auto`}>
           <form onSubmit={handleSubmit(submit)} className="flex flex-col ">
-            <label
-              htmlFor="username"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Your thoughts
-            </label>
-            <div className="mt-2">
-              <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                <textarea
-                  className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                  {...register('thought')}
-                  placeholder="What's on your mind?"
-                />
-              </div>
-            </div>
             <div>
               <label
                 htmlFor="username"
                 className="block text-sm font-medium leading-6 text-gray-900 mt-5"
               >
-                Your feelings
+                Title of your thought
               </label>
               <div className="mt-2">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                <div className="input-container">
                   <input
-                    className="relative block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="input"
+                    {...register('title')}
+                    placeholder="What's on your mind?"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="mt-4">
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Your thoughts
+              </label>
+              <div className="mt-2">
+                <div className="input-container">
+                  <textarea
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    {...register('thought')}
+                    placeholder="What's on your mind?"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="mt-4">
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Your feelings
+              </label>
+              <div className="mt-4">
+                <div className="input-container">
+                  <input
+                    className="input"
                     {...register('feel')}
                     placeholder="How do you feel?"
                   />
                 </div>
               </div>
             </div>
-            <div>
+            <div className="mt-4">
               <label
                 htmlFor="username"
-                className="block text-sm font-medium leading-6 text-gray-900 mt-5"
+                className="block text-sm font-medium leading-6 text-gray-900 "
               >
                 Your location
               </label>
               <div className="mt-2">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                <div className="input-container">
                   <input
-                    className="relative block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="input"
                     {...register('feel')}
                     placeholder="Where are you now?"
                   />

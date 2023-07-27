@@ -10,6 +10,7 @@ model User {
   id            String    @id @default(cuid())
   name          String?
   email         String   @unique
+  emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
@@ -17,6 +18,7 @@ model User {
 }
 model Thoughts {
   id    Int     @id @default(autoincrement())
+  title String
   thought String
   createdAt DateTime @default(now())
   place String?
