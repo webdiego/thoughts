@@ -13,7 +13,7 @@ export default async function handler(
     return
   }
 
-  const { thought } = req.body.data
+  const { thought, place, feel } = req.body.data
   const user = await prisma.user.findUnique({
     where: {
       email: session.user.email,
@@ -26,6 +26,8 @@ export default async function handler(
     data: {
       userId: user.id,
       thought,
+      place,
+      feel,
     },
   })
 

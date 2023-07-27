@@ -9,6 +9,7 @@ import { prisma } from '@prisma/prisma.client'
 import Navbar from '@components/Shared/Navbar'
 import Drawer from '@/components/Dashboard/Drawer'
 import EmptyState from '@components/Dashboard/EmptyState'
+import Thoughts from '@/components/Dashboard/SingleThought'
 import { useAtom } from 'jotai'
 import { toggleDrawerAtom } from '../../jotai/atom'
 
@@ -17,55 +18,35 @@ export default function Dashboard({ allThoughts }: { allThoughts: any }) {
 
   const { data: session } = useSession()
   const [thoughts, setThoughts] = React.useState<any>(allThoughts)
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, reset } = useForm()
 
   const submit = async (dataSubmitted: any) => {
     if (!session || !session.user) return
-
-    console.log(dataSubmitted)
     const data = {
       thought: dataSubmitted.thought,
+      feel: dataSubmitted.feel,
+      place: dataSubmitted.place,
     }
-    // await axios
-    //   .post('/api/addThought', {
-    //     data,
-    //   })
-    //   .then((res) => {
-    //     setThoughts(res.data)
-    //   })
+    await axios
+      .post('/api/addThought', {
+        data,
+      })
+      .then((res) => {
+        setThoughts([...thoughts, data])
+        reset()
+        setTimeout(() => {
+          setToggleDrawer(false)
+        }, 1000)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   return (
     <>
       <Navbar {...{ session }} />
-
-      <div className="text-xs">
-        {thoughts && thoughts?.length > 0 ? (
-          <div className="max-w-2xl mx-auto px-6 py-10">
-            <h1 className="text-xl font-bold tracking-tight text-gray-900 text-center mb-10">
-              These are your thoughts, only you can see them.
-            </h1>
-            <div>
-              <button
-                onClick={() => setToggleDrawer(true)}
-                type="button"
-                className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 mt-5 cursor-pointer"
-              >
-                Add a thought
-              </button>
-            </div>
-            {thoughts?.map(
-              ({ id, thought }: { id: string; thought: string }) => (
-                <div key={id} className="bg-slate-200 rounded-md px-4 py-2 m-1">
-                  <p>post:{thought}</p>
-                </div>
-              )
-            )}
-          </div>
-        ) : (
-          <EmptyState />
-        )}
-      </div>
+      <Thoughts {...{ thoughts, setToggleDrawer }} />
       <Drawer>
         <main className={`flex min-h-screen flex-col max-w-7xl mx-auto`}>
           <form onSubmit={handleSubmit(submit)} className="flex flex-col ">
@@ -84,28 +65,38 @@ export default function Dashboard({ allThoughts }: { allThoughts: any }) {
                 />
               </div>
             </div>
-            <label
-              htmlFor="username"
-              className="block text-sm font-medium leading-6 text-gray-900 mt-5"
-            >
-              Your feelings
-            </label>
-            <div className="mt-2">
-              <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                <input
-                  className="relative block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                  {...register('feel')}
-                  placeholder="How do you feel?"
-                />
-                {/* <div className="absolute">
-                  <InputEmoji
-          value={text}
-          onChange={setText}
-          cleanOnEnter
-          onEnter={handleOnEnter}
-          placeholder="Type a message"
-        />
-                </div> */}
+            <div>
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium leading-6 text-gray-900 mt-5"
+              >
+                Your feelings
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                  <input
+                    className="relative block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    {...register('feel')}
+                    placeholder="How do you feel?"
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium leading-6 text-gray-900 mt-5"
+              >
+                Your location
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                  <input
+                    className="relative block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    {...register('feel')}
+                    placeholder="Where are you now?"
+                  />
+                </div>
               </div>
             </div>
             <input
@@ -147,11 +138,15 @@ export async function getServerSideProps(context: any) {
         userId: user.id,
       },
       select: {
+        id: true,
         thought: true,
+        createdAt: true,
+        place: true,
+        feel: true,
       },
     })
   }
-
+  console.log(allThoughts)
   return {
     props: {
       allThoughts,
