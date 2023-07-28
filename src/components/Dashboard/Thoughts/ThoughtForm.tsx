@@ -1,7 +1,24 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
+import React, { Dispatch } from 'react'
 import axios from 'axios'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { useRouter } from 'next/router'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+
+const validationSchema = z.object({
+  title: z.string().min(1, { message: 'Write a title of your thought' }),
+  thought: z.string().min(1, { message: 'What are you thinking?' }),
+  place: z.string().min(1, { message: 'Where are you?' }),
+  feel: z.string().min(1, { message: 'How do you feel?' }),
+})
+
+type ThoughtType = {
+  title: string
+  thought: string
+  place: string
+  feel: string
+}
+type ValidationSchema = z.infer<typeof validationSchema>
 
 export default function ThoughtForm({
   session,
@@ -11,24 +28,24 @@ export default function ThoughtForm({
 }: {
   session: any
   thoughts: any
-  setThoughts: any
-  setToggleDrawer: any
+  setThoughts: Dispatch<ThoughtType[]>
+  setToggleDrawer: Dispatch<boolean>
 }) {
   const router = useRouter()
-  const { register, handleSubmit, reset } = useForm()
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ValidationSchema>({
+    resolver: zodResolver(validationSchema),
+  })
 
-  const submit = async (dataSubmitted: any) => {
+  const submit = async (data: any) => {
     if (!session || !session.user) return
-    const data = {
-      title: dataSubmitted.title,
-      thought: dataSubmitted.thought,
-      feel: dataSubmitted.feel,
-      place: dataSubmitted.place,
-    }
-
     await axios
       .post('/api/addThought', {
-        data,
+        ...data,
       })
       .then((res) => {
         setThoughts([...thoughts, data])
@@ -62,13 +79,16 @@ export default function ThoughtForm({
                 placeholder="What's on your mind?"
               />
             </div>
+            {errors.title && (
+              <p className="text-xs italic text-red-500 mt-2">
+                {' '}
+                {errors.title?.message}
+              </p>
+            )}
           </div>
         </div>
         <div className="mt-4">
-          <label
-            htmlFor="username"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
+          <label className="block text-sm font-medium leading-6 text-gray-900">
             Your thoughts
           </label>
           <div className="mt-2">
@@ -79,6 +99,12 @@ export default function ThoughtForm({
                 placeholder="What's on your mind?"
               />
             </div>
+            {errors.thought && (
+              <p className="text-xs italic text-red-500 mt-2">
+                {' '}
+                {errors.thought?.message}
+              </p>
+            )}
           </div>
         </div>
         <div className="mt-4">
@@ -96,6 +122,11 @@ export default function ThoughtForm({
                 placeholder="How do you feel?"
               />
             </div>
+            {errors.feel && (
+              <p className="text-xs italic text-red-500 mt-2">
+                {errors.feel?.message}
+              </p>
+            )}
           </div>
         </div>
         <div className="mt-4">
@@ -113,6 +144,11 @@ export default function ThoughtForm({
                 placeholder="Where are you now?"
               />
             </div>
+            {errors.place && (
+              <p className="text-xs italic text-red-500 mt-2">
+                {errors.place?.message}
+              </p>
+            )}
           </div>
         </div>
         <input

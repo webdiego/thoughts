@@ -1,8 +1,8 @@
 import React from 'react'
-import EmptyState from './EmptyState'
-import SingleThought from './Thought'
+import EmptyState from '../EmptyState'
+import Thought from './Thought'
 
-type SingleThoughtType = {
+type ThoughtType = {
   id: string
   title: string
   thought: string
@@ -37,9 +37,9 @@ export default function Thoughts({
             </div>
           </div>
           <div className="space-y-10">
-            {thoughts?.map((singleThought: SingleThoughtType, i: number) => (
+            {thoughts?.map((singleThought: ThoughtType, i: number) => (
               <div key={i}>
-                <SingleThought {...{ singleThought }} />
+                <Thought {...{ singleThought }} />
               </div>
             ))}
           </div>

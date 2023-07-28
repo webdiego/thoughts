@@ -6,8 +6,8 @@ import { prisma } from '@prisma/prisma.client'
 //Components
 import Navbar from '@components/Shared/Navbar'
 import Drawer from '@components/Dashboard/Drawer'
-import Thoughts from '@components/Dashboard/Thoughts'
-import ThoughtForm from '@components/Dashboard/ThoughtForm'
+import Thoughts from '@/components/Dashboard/Thoughts/Thoughts'
+import ThoughtForm from '@/components/Dashboard/Thoughts/ThoughtForm'
 import Loading from '@components/Shared/Loading'
 //Jotai
 import { useAtom } from 'jotai'

@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+
 type SingleThoughtType = {
   id: string
   title: string
@@ -8,6 +9,7 @@ type SingleThoughtType = {
   createdAt: string
   feel?: string
 }
+
 export default function SingleThought({
   singleThought,
 }: {
