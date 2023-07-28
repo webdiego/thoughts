@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { Session } from 'next-auth'
 
 const validationSchema = z.object({
   title: z.string().min(1, { message: 'Write a title of your thought' }),
@@ -13,11 +14,13 @@ const validationSchema = z.object({
 })
 
 type ThoughtType = {
+  id: string
   title: string
   thought: string
   place: string
   feel: string
-}
+  createdAt: string
+}[]
 type ValidationSchema = z.infer<typeof validationSchema>
 
 export default function ThoughtForm({
@@ -26,9 +29,9 @@ export default function ThoughtForm({
   setThoughts,
   setToggleDrawer,
 }: {
-  session: any
-  thoughts: any
-  setThoughts: Dispatch<ThoughtType[]>
+  session: Session
+  thoughts: ThoughtType
+  setThoughts: Dispatch<ThoughtType> | any
   setToggleDrawer: Dispatch<boolean>
 }) {
   const router = useRouter()

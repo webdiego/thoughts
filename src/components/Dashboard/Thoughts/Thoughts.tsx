@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch } from 'react'
 import EmptyState from '../EmptyState'
 import Thought from './Thought'
 
@@ -6,17 +6,17 @@ type ThoughtType = {
   id: string
   title: string
   thought: string
-  place?: string
+  place: string
   createdAt: string
-  feel?: string
+  feel: string
 }
 
 export default function Thoughts({
   thoughts,
   setToggleDrawer,
 }: {
-  thoughts: any
-  setToggleDrawer: any
+  thoughts: ThoughtType[]
+  setToggleDrawer: Dispatch<boolean>
 }) {
   return (
     <>

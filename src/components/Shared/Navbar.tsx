@@ -1,10 +1,13 @@
 import React from 'react'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { Session } from 'next-auth'
+
+import { signOut } from 'next-auth/react'
 import Image from 'next/image'
 import ThinkIcon from 'public/think.svg'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-export default function Navbar({ session }: { session: any }) {
+
+export default function Navbar({ session }: { session: Session }) {
   const router = useRouter()
   return (
     <div className="bg-white py-3 sticky z-[200] border-b shadow-sm">

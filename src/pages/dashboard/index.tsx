@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { useSession } from 'next-auth/react'
+import { Session } from 'next-auth'
+
 import { authOptions } from '../../pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth/next'
 import { prisma } from '@prisma/prisma.client'
@@ -14,7 +16,7 @@ import { useAtom } from 'jotai'
 import { toggleDrawerAtom, thoughtsAtom } from '../../jotai/atom'
 
 export default function Dashboard({ allThoughts }: { allThoughts: any }) {
-  const { data: session } = useSession()
+  const { data: session } = useSession() as { data: Session }
   const [loading, setLoading] = React.useState(true)
   const [, setToggleDrawer] = useAtom(toggleDrawerAtom)
 

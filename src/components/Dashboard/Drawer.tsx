@@ -4,7 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useAtom } from 'jotai'
 import { toggleDrawerAtom } from '../../jotai/atom'
 
-export default function Drawer({ children }: { children: any }) {
+export default function Drawer({ children }: { children: React.ReactNode }) {
   const [toggleDrawer, setToggleDrawer] = useAtom(toggleDrawerAtom)
   return (
     <Transition.Root show={toggleDrawer} as={Fragment}>

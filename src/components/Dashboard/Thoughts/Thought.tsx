@@ -5,9 +5,9 @@ type SingleThoughtType = {
   id: string
   title: string
   thought: string
-  place?: string
+  place: string
   createdAt: string
-  feel?: string
+  feel: string
 }
 
 export default function SingleThought({
@@ -35,7 +35,8 @@ export default function SingleThought({
         <div className="mt-3  text-gray-400">
           I was in
           <span className="ml-1">
-            {singleThought?.place} and {singleThought?.feel}
+            {singleThought.place.toLocaleLowerCase()} and felt{' '}
+            {singleThought.feel.toLocaleLowerCase()}
           </span>
         </div>
       </div>
