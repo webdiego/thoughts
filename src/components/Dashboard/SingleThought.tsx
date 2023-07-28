@@ -4,6 +4,7 @@ import SingleThought from './Thought'
 
 type SingleThoughtType = {
   id: string
+  title: string
   thought: string
   place?: string
   createdAt: string
@@ -31,11 +32,11 @@ export default function Thoughts({
                 type="button"
                 className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 mt-5"
               >
-                Add a thought
+                Add a new thought
               </button>
             </div>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-10">
             {thoughts?.map((singleThought: SingleThoughtType, i: number) => (
               <div key={i}>
                 <SingleThought {...{ singleThought }} />

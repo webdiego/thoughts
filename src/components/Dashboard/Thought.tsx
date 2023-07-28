@@ -1,6 +1,8 @@
 import React from 'react'
+import Image from 'next/image'
 type SingleThoughtType = {
   id: string
+  title: string
   thought: string
   place?: string
   createdAt: string
@@ -14,7 +16,7 @@ export default function SingleThought({
   return (
     <article
       key={singleThought.id}
-      className="flex max-w-xl flex-col items-start justify-between bg-slate-200 rounded-lg  px-6 py-2"
+      className="flex max-w-xl flex-col items-start justify-between bg-gradient-to-bl from-blue-100 via-red-100 to-yellow-100  rounded-lg px-6 py-4 relative"
     >
       <div className="flex items-center gap-x-4 text-xs">
         <time dateTime={singleThought.createdAt} className="text-gray-500">
@@ -23,17 +25,25 @@ export default function SingleThought({
           )}
         </time>
       </div>
-      <div className="group relative">
-        <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-          <div>
-            <span className="absolute inset-0" />
-            {singleThought.thought}
-            {singleThought?.feel}
-          </div>
+      <div className="max-w-lg ">
+        <h3 className="mt-3 text-lg font-semibold text-gray-900">
+          {singleThought.title}
         </h3>
-        <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
-          {singleThought?.feel}
-        </p>
+        <p>{singleThought.thought}</p>
+        <div className="mt-3 text-sm text-gray-600">
+          I was in
+          <span className="ml-1">
+            {singleThought?.place} and {singleThought?.feel}
+          </span>
+        </div>
+      </div>
+      <div className="absolute -top-10 -right-2 transform rotate-90">
+        <Image
+          src="/patterns-taieri/p-thought.svg"
+          width={80}
+          height={80}
+          alt=""
+        />
       </div>
     </article>
   )

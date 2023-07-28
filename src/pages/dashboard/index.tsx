@@ -1,14 +1,13 @@
 import * as React from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { authOptions } from '../../pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth/next'
 import { prisma } from '@prisma/prisma.client'
 import Navbar from '@components/Shared/Navbar'
 import Drawer from '@/components/Dashboard/Drawer'
-import EmptyState from '@components/Dashboard/EmptyState'
 import Thoughts from '@/components/Dashboard/SingleThought'
 import { useAtom } from 'jotai'
 import { toggleDrawerAtom } from '../../jotai/atom'
@@ -23,6 +22,7 @@ export default function Dashboard({ allThoughts }: { allThoughts: any }) {
   const submit = async (dataSubmitted: any) => {
     if (!session || !session.user) return
     const data = {
+      title: dataSubmitted.title,
       thought: dataSubmitted.thought,
       feel: dataSubmitted.feel,
       place: dataSubmitted.place,
@@ -112,7 +112,7 @@ export default function Dashboard({ allThoughts }: { allThoughts: any }) {
                 <div className="input-container">
                   <input
                     className="input"
-                    {...register('feel')}
+                    {...register('place')}
                     placeholder="Where are you now?"
                   />
                 </div>
@@ -158,6 +158,7 @@ export async function getServerSideProps(context: any) {
       },
       select: {
         id: true,
+        title: true,
         thought: true,
         createdAt: true,
         place: true,
@@ -165,7 +166,6 @@ export async function getServerSideProps(context: any) {
       },
     })
   }
-  console.log(allThoughts)
   return {
     props: {
       allThoughts,

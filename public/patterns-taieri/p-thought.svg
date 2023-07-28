@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="234.642" height="279.947" viewBox="0 0 234.642 279.947">
+  <g id="Group_44" data-name="Group 44" transform="translate(-5207.46 6836.447)">
+    <g id="Group_43" data-name="Group 43" transform="translate(5209.96 -6833.947)">
+      <path id="Shape" d="M35.968,39.7H19.694a19.852,19.852,0,0,1,0-39.7H52.242a19.821,19.821,0,0,1,19.79,19.852v1.763A18.06,18.06,0,0,1,54,39.7" transform="translate(55.373)" fill="none" stroke="#4484ab" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="5"/>
+      <g id="Group_42" data-name="Group 42" transform="translate(0 2.316)">
+        <path id="Shape-2" data-name="Shape" d="M0,44.832V15.274A15.33,15.33,0,0,1,15.385,0h0A15.33,15.33,0,0,1,30.77,15.274V74.389A15.33,15.33,0,0,1,15.385,89.664h0A15.33,15.33,0,0,1,0,74.389V67.248" transform="translate(171.41 23.822)" fill="none" stroke="#e53855" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="5"/>
+        <path id="Shape-3" data-name="Shape" d="M0,0V76.64a41.856,41.856,0,0,0,83.708,0V58.533" transform="translate(145.934 23.822)" fill="none" stroke="#44ab96" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="5"/>
+        <path id="Shape-4" data-name="Shape" d="M0,0H68.753a47.645,47.645,0,0,1,0,95.289H48.07" transform="translate(61.895 153.521)" fill="none" stroke="#44ab96" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="5"/>
+        <g id="Group_30" data-name="Group 30">
+          <path id="Shape-5" data-name="Shape" d="M0,0V21.27A46.883,46.883,0,0,0,46.856,68.18H65.519A28.23,28.23,0,0,1,93.713,96.406h0" transform="translate(30.053)" fill="none" stroke="#ffb017" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="5"/>
+          <path id="Shape-6" data-name="Shape" d="M86.465,0H27.1a26.952,26.952,0,1,0,0,53.9H51.6" transform="translate(37.301 124.913)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="5"/>
+          <path id="Shape-7" data-name="Shape" d="M22.41,65.826H18.87a18.929,18.929,0,0,1,0-37.857H61.082A27.951,27.951,0,0,0,89.018,0" transform="translate(0.059 206.805)" fill="none" stroke="#4484ab" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="5"/>
+        </g>
+      </g>
+    </g>
+    <ellipse id="Shape-8" data-name="Shape" cx="23.973" cy="23.767" rx="23.973" ry="23.767" transform="translate(5318.569 -6654.536)" fill="none" stroke="#e53855" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="5"/>
+    <path id="Shape-9" data-name="Shape" d="M78.114,18.084v7.653a19.576,19.576,0,0,1-19.6,19.547h0A19.576,19.576,0,0,1,38.906,25.736V19.4A19.426,19.426,0,0,0,19.456,0h0A19.427,19.427,0,0,0,0,19.4v7.8" transform="translate(5439.602 -6637.115) rotate(90)" fill="none" stroke="#ffb017" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="5"/>
+  </g>
+</svg>
