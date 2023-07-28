@@ -21,9 +21,9 @@ model Thoughts {
   title String
   thought String
   createdAt DateTime @default(now())
-  place String?
+  place String
   userId String
-  feel String?
+  feel String
   user  User    @relation(fields: [userId], references: [id])
 }
 
