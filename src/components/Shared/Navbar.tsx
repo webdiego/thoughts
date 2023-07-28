@@ -61,7 +61,7 @@ export default function Navbar({ session }: { session: any }) {
                 //     callbackUrl: 'http://localhost:3000/dashboard',
                 //   })
                 // }
-                href="/auth/signin"
+                href="/auth/signIn"
               >
                 Sign in
               </a>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 export default function ThoughtForm({
   session,
@@ -13,6 +14,7 @@ export default function ThoughtForm({
   setThoughts: any
   setToggleDrawer: any
 }) {
+  const router = useRouter()
   const { register, handleSubmit, reset } = useForm()
 
   const submit = async (dataSubmitted: any) => {
@@ -36,7 +38,9 @@ export default function ThoughtForm({
         }, 500)
       })
       .catch((err) => {
-        console.log(err)
+        if (err.response.status === 401) {
+          router.push('/api/auth/signIn')
+        }
       })
   }
 

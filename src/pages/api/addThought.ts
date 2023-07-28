@@ -9,8 +9,7 @@ export default async function handler(
   const session = await getServerSession(req, res, authOptions)
 
   if (!session || !session.user || !session.user.email) {
-    res.status(401).json({ message: 'You must be logged in.' })
-    return
+    return res.status(401).json({ message: 'Unauthenticated' })
   }
 
   const { title, thought, place, feel } = req.body.data
