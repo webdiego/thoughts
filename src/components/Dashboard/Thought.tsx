@@ -16,7 +16,7 @@ export default function SingleThought({
   return (
     <article
       key={singleThought.id}
-      className="flex max-w-xl flex-col items-start justify-between bg-gradient-to-bl from-blue-100 via-red-100 to-yellow-100  rounded-lg px-6 py-4 relative"
+      className="flex max-w-xl flex-col items-start justify-between bg-gradient-to-bl from-blue-200 via-red-200 to-yellow-100 rounded-lg px-6 py-4 relative"
     >
       <div className="flex items-center gap-x-4 text-xs">
         <time dateTime={singleThought.createdAt} className="text-gray-500">
@@ -25,12 +25,12 @@ export default function SingleThought({
           )}
         </time>
       </div>
-      <div className="max-w-lg ">
+      <div className="max-w-lg text-sm mr-auto">
         <h3 className="mt-3 text-lg font-semibold text-gray-900">
           {singleThought.title}
         </h3>
-        <p>{singleThought.thought}</p>
-        <div className="mt-3 text-sm text-gray-600">
+        <p className="">{singleThought.thought}</p>
+        <div className="mt-3  text-gray-600">
           I was in
           <span className="ml-1">
             {singleThought?.place} and {singleThought?.feel}
