@@ -39,14 +39,17 @@ export default function Dashboard({ allThoughts }: { allThoughts: any }) {
       <Navbar {...{ session }} />
       {loading && <Loading />}
       {!loading && (
-        <>
-          <Thoughts {...{ thoughts, setToggleDrawer }} />
-          <Drawer>
-            <ThoughtForm
-              {...{ session, thoughts, setThoughts, setToggleDrawer }}
-            />
-          </Drawer>
-        </>
+        <div className="min-h-screen h-full relative w-full">
+          <div className="bg-[url('/patterns-taieri/p-thought.svg')] bg-center bg-contain bg-repeat  absolute top-0 left-0 min-h-screen h-full hidden lg:block w-52 blur-sm -z-10" />
+          <>
+            <Thoughts {...{ thoughts, setToggleDrawer }} />
+            <Drawer>
+              <ThoughtForm
+                {...{ session, thoughts, setThoughts, setToggleDrawer }}
+              />
+            </Drawer>
+          </>
+        </div>
       )}
     </>
   )

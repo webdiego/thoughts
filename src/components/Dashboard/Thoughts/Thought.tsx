@@ -18,9 +18,7 @@ export default function SingleThought({
   return (
     <article
       key={singleThought.id}
-      className="flex max-w-xl flex-col items-start justify-between bg-gradient-to-br rounded-lg px-6 py-4 relative group
-      transition-all duration-500 ease-in-out
-      from-black/90 via-black/80 to-black/50 hover:from-red-200 hover:via-yellow-200 hover:to-blue-200 cursor-pointer"
+      className="flex max-w-xl flex-col items-start justify-between rounded-lg px-6 py-4 relative bg-gradient-to-br from-black to-slate-700"
     >
       <div className="flex items-center gap-x-4 text-xs">
         <time dateTime={singleThought.createdAt} className="text-gray-500">
@@ -40,11 +38,11 @@ export default function SingleThought({
           </span>
         </div>
       </div>
-      <div className="absolute -top-10 -right-2 transform rotate-90 grayscale group-hover:grayscale-0 drop-shadow-2xl">
+      <div className="absolute -top-5 -right-2 transform rotate-90 grayscale group-hover:grayscale-0 drop-shadow-2xl">
         <Image
           src="/patterns-taieri/p-thought.svg"
-          width={80}
-          height={80}
+          width={60}
+          height={60}
           alt=""
         />
       </div>
