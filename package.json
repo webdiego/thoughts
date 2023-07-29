@@ -23,6 +23,7 @@
     "cookies-next": "^2.1.2",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.11",
+    "framer-motion": "^10.15.0",
     "jotai": "^2.2.2",
     "next": "13.4.11",
     "next-auth": "^4.22.3",
