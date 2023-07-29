@@ -37,12 +37,12 @@ export default function Navbar({ session }: { session: Session | null }) {
         <div className="w-1/3 flex items-center justify-end">
           {!session && (
             <div className="flex items-center space-x-5">
-              <a
-                className="bg-orange-400 text-sm font-medium px-3 py-1 rounded-lg text-white"
+              <Link
                 href="/auth/signIn"
+                className="bg-orange-400 text-sm font-medium px-3 py-1 rounded-lg text-white"
               >
                 Sign in
-              </a>
+              </Link>
             </div>
           )}
           {session && session.user && (

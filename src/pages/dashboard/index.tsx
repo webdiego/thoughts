@@ -32,7 +32,7 @@ export default function Dashboard({ allThoughts }: { allThoughts: any }) {
     return () => {
       clearTimeout(loadingEffect)
     }
-  }, [allThoughts])
+  }, [allThoughts, setThoughts])
 
   return (
     <>

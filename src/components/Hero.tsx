@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Session } from 'next-auth'
+import Link from 'next/link'
 export default function Hero({ session }: { session: Session | null }) {
   const variantsBlur = {
     hidden: { filter: 'blur(10px)', opacity: 0 },
@@ -32,7 +33,7 @@ export default function Hero({ session }: { session: Session | null }) {
           className="text-center"
         >
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Don't share your thoughts with the world.
+            Don&apos;t share your thoughts with the world.
           </h1>
           <p className="mt-6 text-lg leading-7 text-gray-600">
             In a world where everyone is sharing their thoughts, we believe that
@@ -45,12 +46,12 @@ export default function Hero({ session }: { session: Session | null }) {
             >
               Get started
             </a>
-            <a
+            <Link
               href="/#features"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Learn more <span aria-hidden="true">→</span>
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

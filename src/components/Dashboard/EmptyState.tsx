@@ -7,7 +7,7 @@ export default function EmptyState() {
   return (
     <div className="h-screen flex flex-col items-center justify-start mt-28 px-6">
       <h1 className="text-xl font-bold tracking-tight text-gray-900 text-center">
-        Don't share your thoughts with the world.
+        Don&apos;t share your thoughts with the world.
       </h1>
       <p className="mt-2 text-sm text-gray-600 text-center">
         Think is a private journaling app that allows you to write down your
