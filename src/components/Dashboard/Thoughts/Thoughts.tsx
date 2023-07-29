@@ -21,9 +21,9 @@ export default function Thoughts({
   return (
     <>
       {thoughts && thoughts?.length > 0 ? (
-        <div className="max-w-2xl mx-auto px-6 py-10">
-          <div className="py-10 flex flex-col items-start">
-            <h1 className="text-xl font-bold tracking-tight text-gray-900 text-center">
+        <div className="max-w-2xl mx-auto px-6 py-20">
+          <div className="py-10 flex flex-col items-start md:items-center">
+            <h1 className="text-xl font-bold tracking-tight text-gray-900 ">
               These are your thoughts, only you can see them.
             </h1>
             <div>
