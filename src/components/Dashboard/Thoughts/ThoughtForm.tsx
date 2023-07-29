@@ -46,9 +46,13 @@ export default function ThoughtForm({
 
   const submit = async (data: any) => {
     if (!session || !session.user) return
+    const { title, thought, place, feel } = data
     await axios
       .post('/api/addThought', {
-        ...data,
+        title,
+        thought,
+        place,
+        feel,
       })
       .then((res) => {
         setThoughts([...thoughts, data])

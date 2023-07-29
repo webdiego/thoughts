@@ -12,7 +12,7 @@ export default async function handler(
     return res.status(401).json({ message: 'Unauthenticated' })
   }
 
-  const { title, thought, place, feel } = req.body.data
+  const { title, thought, place, feel } = req.body
   const user = await prisma.user.findUnique({
     where: {
       email: session.user.email,
