@@ -24,7 +24,7 @@ model Thoughts {
   place String
   userId String
   feel String
-  user  User    @relation(fields: [userId], references: [id])
+  user  User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 

@@ -11,8 +11,8 @@ export default function LeafIcon() {
       <g
         fill="none"
         stroke="#fff"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         strokeWidth="2"
       >
         <path d="M5 21c.5-4.5 2.5-8 7-10" />
