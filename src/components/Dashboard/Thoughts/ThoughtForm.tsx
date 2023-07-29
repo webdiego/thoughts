@@ -79,7 +79,7 @@ export default function ThoughtForm({
               <input
                 className="input"
                 {...register('title')}
-                placeholder="What's on your mind?"
+                placeholder="What's the title?"
               />
             </div>
             {errors.title && (
@@ -97,7 +97,7 @@ export default function ThoughtForm({
           <div className="mt-2">
             <div className="input-container">
               <textarea
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                className="textarea"
                 {...register('thought')}
                 placeholder="What's on your mind?"
               />
