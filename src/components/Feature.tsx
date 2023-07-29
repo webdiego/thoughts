@@ -1,5 +1,3 @@
-import { ArrowPathIcon, LockClosedIcon } from '@heroicons/react/24/outline'
-
 import FreedomIcon from './Icons/FreedomIcon'
 import PenIcon from './Icons/PenIcon'
 import SecureIcon from './Icons/SecureIcon'

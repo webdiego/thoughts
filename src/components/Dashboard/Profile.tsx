@@ -20,8 +20,8 @@ export default function Profile({ session }: { session: Session }) {
     <>
       <Modal
         title="Delete your account"
-        description="Are you sure you want to delete your account? This action cannot be undone."
-        btnActionText="delete"
+        description="Are you sure you want to delete your account? This action cannot be undone and all of your data will be permanently deleted."
+        btnActionText="Delete account"
         handleBtnAction={handleDeleteAccount}
         {...{ modalOpen, setModalOpen }}
       />
