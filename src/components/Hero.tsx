@@ -12,15 +12,16 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="px-6 pt-20 lg:px-8 relative">
-      <div>
+    <div className="px-6 pt-32 lg:px-8 relative">
+      <div className="relative">
         <Image
           src="/patterns-taieri/p1.svg"
           alt="p1"
           width="0"
           height="0"
-          className="w-full h-32 "
+          className="w-full h-32"
         />
+        <div className="h-2/3 bg-gradient-to-t from-white to-transparent absolute left-0 bottom-0 w-full" />
       </div>
       <div className="mx-auto max-w-2xl py-20">
         <div className="text-center">

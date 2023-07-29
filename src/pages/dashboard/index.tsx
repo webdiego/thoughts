@@ -40,7 +40,10 @@ export default function Dashboard({ allThoughts }: { allThoughts: any }) {
       {loading && <Loading />}
       {!loading && (
         <div className="min-h-screen h-full relative w-full">
-          <div className="bg-[url('/patterns-taieri/p-thought.svg')] bg-center bg-contain bg-repeat  absolute top-0 left-0 min-h-screen h-full hidden lg:block w-52 blur-sm -z-10" />
+          <div className="bg-[url('/patterns-taieri/p-thought.svg')] bg-center bg-contain bg-repeat  absolute top-0 left-0 min-h-screen h-full hidden lg:block w-52  -z-10 -translate-x-10">
+            <div className="h-full bg-gradient-to-l from-white to-transparent absolute left-0 bottom-0 w-full" />
+          </div>
+
           <>
             <Thoughts {...{ thoughts, setToggleDrawer }} />
             <Drawer>
@@ -61,7 +64,7 @@ export async function getServerSideProps(context: any) {
   if (!session) {
     return {
       redirect: {
-        destination: '/',
+        destination: '/auth/signIn',
         permanent: false,
       },
     }
