@@ -1,15 +1,21 @@
 import React from 'react'
-import { Session } from 'next-auth'
-import { Cog6ToothIcon } from '@heroicons/react/24/outline'
-import { signOut } from 'next-auth/react'
 import Image from 'next/image'
-import ThinkIcon from 'public/think.svg'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
+import { Session } from 'next-auth'
+import { signOut } from 'next-auth/react'
+import { Cog6ToothIcon } from '@heroicons/react/24/outline'
+import ThinkIcon from 'public/think.svg'
+import useOutsideClick from '../../hooks/useOutsideClick'
 export default function Navbar({ session }: { session: Session | null }) {
+  const ref = React.useRef(null)
+
   const [open, setOpen] = React.useState(false)
   const router = useRouter()
+  useOutsideClick(ref, () => {
+    open && setOpen(false)
+  })
+
   return (
     <div className="bg-white py-3 z-[200] border-b shadow-sm fixed w-full top-0">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 ">
@@ -20,7 +26,10 @@ export default function Navbar({ session }: { session: Session | null }) {
         </div>
         <div className="w-1/3 flex items-center justify-center">
           {session && session.user && router.pathname !== '/dashboard' && (
-            <Link href="/dashboard" className="font-semibold">
+            <Link
+              href="/dashboard"
+              className="text-sm md:text-base font-semibold"
+            >
               Dashboard
             </Link>
           )}
@@ -37,7 +46,7 @@ export default function Navbar({ session }: { session: Session | null }) {
             </div>
           )}
           {session && session.user && (
-            <div className="flex items-center space-x-5">
+            <div ref={ref} className="flex items-center space-x-5">
               <div className="relative">
                 <div
                   onClick={() => setOpen(!open)}
