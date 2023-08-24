@@ -70,8 +70,8 @@ export default function Example() {
             }}
             className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16"
           >
-            {features.map((feature) => (
-              <>
+            {features.map((feature, i) => (
+              <div key={i}>
                 <motion.div
                   variants={FADE_DOWN_ANIMATION_VARIANTS}
                   key={feature.name}
@@ -89,7 +89,7 @@ export default function Example() {
                     {feature.description}
                   </dd>
                 </motion.div>
-              </>
+              </div>
             ))}
           </motion.dl>
         </div>

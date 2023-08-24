@@ -39,7 +39,7 @@ export default function ThoughtForm({
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { isSubmitted, isSubmitting, errors },
   } = useForm<ValidationSchema>({
     resolver: zodResolver(validationSchema),
   })
@@ -56,10 +56,10 @@ export default function ThoughtForm({
       })
       .then((res) => {
         setThoughts([...thoughts, data])
-        reset()
         setTimeout(() => {
+          reset()
           setToggleDrawer(false)
-        }, 500)
+        }, 2000)
       })
       .catch((err) => {
         if (err.response.status === 401) {
@@ -158,10 +158,28 @@ export default function ThoughtForm({
             )}
           </div>
         </div>
-        <input
-          className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 mt-5 cursor-pointer"
-          type="submit"
-        />
+        {!isSubmitting && !isSubmitted && (
+          <input
+            className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 mt-5 cursor-pointer"
+            type="submit"
+          />
+        )}
+        {isSubmitting && (
+          <button
+            className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 mt-5 cursor-not-allowed"
+            disabled
+          >
+            Saving...
+          </button>
+        )}
+        {isSubmitted && (
+          <button
+            className="rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 mt-5 cursor-not-allowed"
+            disabled
+          >
+            Saved!
+          </button>
+        )}
       </form>
     </main>
   )
