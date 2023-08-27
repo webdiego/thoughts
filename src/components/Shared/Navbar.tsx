@@ -7,14 +7,25 @@ import { signOut } from 'next-auth/react'
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 import ThinkIcon from 'public/think.svg'
 import useOutsideClick from '../../hooks/useOutsideClick'
+import { motion } from 'framer-motion'
 export default function Navbar({ session }: { session: Session | null }) {
   const ref = React.useRef(null)
-
+  const [loader, setLoader] = React.useState(true)
   const [open, setOpen] = React.useState(false)
   const router = useRouter()
+
   useOutsideClick(ref, () => {
     open && setOpen(false)
   })
+
+  React.useEffect(() => {
+    let timer = setTimeout(() => {
+      setLoader(false)
+    }, 2000)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [])
 
   return (
     <div className="bg-white py-3 z-[200] border-b shadow-sm fixed w-full top-0">
@@ -34,23 +45,33 @@ export default function Navbar({ session }: { session: Session | null }) {
             </Link>
           )}
         </div>
-        <div className="w-1/3 flex items-center justify-end">
-          {!session && (
-            <div className="flex items-center space-x-5">
+        <div className="w-1/3 flex items-center justify-end h-12">
+          {!session && !loader && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="flex items-center space-x-5"
+            >
               <Link
                 href="/auth/signIn"
                 className="bg-orange-400 text-sm font-medium px-3 py-1 rounded-lg text-white"
               >
                 Sign in
               </Link>
-            </div>
+            </motion.div>
           )}
-          {session && session.user && (
-            <div ref={ref} className="flex items-center space-x-5">
+          {session && session.user && !loader && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              ref={ref}
+            >
               <div className="relative">
                 <div
                   onClick={() => setOpen(!open)}
-                  className="focus:outline-none focus:ring focus:ring-violet-300 rounded-full border-2 border-black/70"
+                  className="focus:outline-none focus:ring focus:ring-violet-300 rounded-full border-2 border-black/70 bg-gradient-to-tr from-black to bg-slate-500"
                 >
                   <Image
                     src={session.user.image ?? ''}
@@ -93,7 +114,7 @@ export default function Navbar({ session }: { session: Session | null }) {
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
       </div>
