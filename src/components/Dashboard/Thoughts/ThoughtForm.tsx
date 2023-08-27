@@ -159,16 +159,10 @@ export default function ThoughtForm({
           </div>
         </div>
         {!isSubmitting && !isSubmitted && (
-          <input
-            className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 mt-5 cursor-pointer"
-            type="submit"
-          />
+          <input className="btn-primary mt-5 cursor-pointer" type="submit" />
         )}
         {isSubmitting && (
-          <button
-            className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 mt-5 cursor-not-allowed"
-            disabled
-          >
+          <button className="btn-primary mt-5 cursor-not-allowed" disabled>
             Saving...
           </button>
         )}

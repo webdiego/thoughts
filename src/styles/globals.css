@@ -20,3 +20,14 @@ body {
 .textarea {
   @apply block flex-1 border-0 bg-transparent py-1.5 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6;
 }
+
+.btn-primary {
+  @apply rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 border;
+}
+
+.btn-active {
+  @apply rounded-md px-3 py-1 text-sm font-medium text-gray-100 shadow-sm bg-gradient-to-br from-slate-700 via-slate-600 to-slate-400 border;
+}
+.btn-inactive {
+  @apply rounded-md px-3 py-1 text-sm font-medium text-black shadow-sm bg-gradient-to-br from-gray-200 via-slate-100 to-gray-100 border;
+}

@@ -18,6 +18,26 @@ export default function Thoughts({
   thoughts: ThoughtType[]
   setToggleDrawer: Dispatch<boolean>
 }) {
+  const [sort, setSort] = React.useState('descend')
+
+  const sortByNewest = function () {
+    return thoughts?.sort((a: ThoughtType, b: ThoughtType) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    })
+  }
+
+  const sortByOldest = function () {
+    return thoughts?.sort((a: ThoughtType, b: ThoughtType) => {
+      return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+    })
+  }
+
+  if (sort === 'descend') {
+    sortByNewest()
+  } else {
+    sortByOldest()
+  }
+
   return (
     <>
       {thoughts && thoughts?.length > 0 ? (
@@ -30,12 +50,34 @@ export default function Thoughts({
               <button
                 onClick={() => setToggleDrawer(true)}
                 type="button"
-                className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 mt-5"
+                className="btn-primary mt-5"
               >
-                Add a new thought
+                + Add a new thought
               </button>
             </div>
           </div>
+
+          <div>
+            <div className="flex items-center justify-between w-max py-5">
+              <button
+                className={`mr-2 ${
+                  sort === 'descend' ? 'btn-active' : 'btn-inactive'
+                }`}
+                onClick={() => setSort('descend')}
+              >
+                Newer
+              </button>
+              <button
+                className={`${
+                  sort === 'ascend' ? 'btn-active' : 'btn-inactive'
+                }`}
+                onClick={() => setSort('ascend')}
+              >
+                Oldest
+              </button>
+            </div>
+          </div>
+
           <div className="space-y-10">
             {thoughts?.map((singleThought: ThoughtType, i: number) => (
               <div key={i}>

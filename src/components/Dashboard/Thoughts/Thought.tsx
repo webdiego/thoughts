@@ -27,15 +27,17 @@ export default function SingleThought({
           )}
         </time>
       </div>
-      <div className="max-w-lg text-sm mr-auto group-hover:text-black text-white">
+      <div className="max-w-lg text-sm mr-auto group-hover:text-black text-white w-full">
         <h3 className="mt-3 text-lg font-semibold">{singleThought.title}</h3>
         <p className="">{singleThought.thought}</p>
-        <div className="mt-3  text-gray-400">
-          I was in
-          <span className="ml-1">
-            {singleThought.place.toLocaleLowerCase()} and felt{' '}
-            {singleThought.feel.toLocaleLowerCase()}
-          </span>
+        <div className="mt-3 text-gray-400 flex justify-between w-full">
+          <p>
+            I was in
+            <span className="ml-1">
+              {singleThought.place.toLocaleLowerCase()} and felt{' '}
+              {singleThought.feel.toLocaleLowerCase()}
+            </span>
+          </p>
         </div>
       </div>
       <div className="absolute -top-5 -right-2 transform rotate-90 grayscale group-hover:grayscale-0 drop-shadow-2xl">
