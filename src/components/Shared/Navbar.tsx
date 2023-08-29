@@ -29,7 +29,12 @@ export default function Navbar({ session }: { session: Session | null }) {
 
   return (
     <div className="bg-white py-3 z-[200] border-b shadow-sm fixed w-full top-0">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 ">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="max-w-7xl mx-auto flex justify-between items-center px-6 "
+      >
         <div className="w-1/3 flex items-center justify-start">
           <Link href="/">
             <Image src={ThinkIcon} width={32} height={32} alt="think" />
@@ -106,7 +111,7 @@ export default function Navbar({ session }: { session: Session | null }) {
                     className="bg-red-400 text-sm font-medium px-3 py-1 rounded-md text-white w-full mt-2"
                     onClick={() =>
                       signOut({
-                        callbackUrl: 'http://localhost:3000',
+                        callbackUrl: '/',
                       })
                     }
                   >
@@ -117,7 +122,7 @@ export default function Navbar({ session }: { session: Session | null }) {
             </motion.div>
           )}
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }
