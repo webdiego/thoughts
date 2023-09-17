@@ -1,19 +1,12 @@
 import React from 'react'
 import Image from 'next/image'
-
-type SingleThoughtType = {
-  id: string
-  title: string
-  thought: string
-  place: string
-  createdAt: string
-  feel: string
-}
+//Types
+import { ThoughtType } from '@/types/dashboard'
 
 export default function SingleThought({
   singleThought,
 }: {
-  singleThought: SingleThoughtType
+  singleThought: ThoughtType
 }) {
   return (
     <article
@@ -23,7 +16,7 @@ export default function SingleThought({
       <div className="flex items-center gap-x-4 text-xs">
         <time dateTime={singleThought.createdAt} className="text-gray-500">
           {new Intl.DateTimeFormat('en-GB').format(
-            singleThought.createdAt as any
+            singleThought.createdAt as unknown as Date
           )}
         </time>
       </div>

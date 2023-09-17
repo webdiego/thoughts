@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Session } from 'next-auth'
+//Types
+import { ThoughtType } from '@/types/dashboard'
 
 const validationSchema = z.object({
   title: z.string().min(1, { message: 'Write a title of your thought' }),
@@ -13,14 +15,6 @@ const validationSchema = z.object({
   feel: z.string().min(1, { message: 'How do you feel?' }),
 })
 
-type ThoughtType = {
-  id: string
-  title: string
-  thought: string
-  place: string
-  feel: string
-  createdAt: string
-}[]
 type ValidationSchema = z.infer<typeof validationSchema>
 
 export default function ThoughtForm({
@@ -30,7 +24,7 @@ export default function ThoughtForm({
   setToggleDrawer,
 }: {
   session: Session
-  thoughts: ThoughtType
+  thoughts: ThoughtType[]
   setThoughts: Dispatch<ThoughtType> | any
   setToggleDrawer: Dispatch<boolean>
 }) {
@@ -46,7 +40,9 @@ export default function ThoughtForm({
 
   const submit = async (data: any) => {
     if (!session || !session.user) return
+
     const { title, thought, place, feel } = data
+
     await axios
       .post('/api/addThought', {
         title,

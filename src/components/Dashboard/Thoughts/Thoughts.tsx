@@ -2,20 +2,14 @@ import React, { Dispatch } from 'react'
 import EmptyState from '../EmptyState'
 import Thought from './Thought'
 
-type ThoughtType = {
-  id: string
-  title: string
-  thought: string
-  place: string
-  createdAt: string
-  feel: string
-}
+//Types
+import { ThoughtType } from '@/types/dashboard'
 
 export default function Thoughts({
   thoughts,
   setToggleDrawer,
 }: {
-  thoughts: ThoughtType[]
+  thoughts: [] | ThoughtType[]
   setToggleDrawer: Dispatch<boolean>
 }) {
   const [sort, setSort] = React.useState('descend')
@@ -31,6 +25,8 @@ export default function Thoughts({
       return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
     })
   }
+
+  // Sort by by sort state on mount and when a new thought is added to the array
 
   if (sort === 'descend') {
     sortByNewest()

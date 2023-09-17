@@ -10,7 +10,7 @@ export default function EmptyState() {
         Don&apos;t share your thoughts with the world.
       </h1>
       <p className="mt-2 text-sm text-gray-600 text-center">
-        Think is a private journaling app that allows you to write down your
+        THOUGHTS is a private journaling app that allows you to write down your
         thoughts and feelings.
       </p>
       <button

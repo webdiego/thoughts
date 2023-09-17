@@ -15,7 +15,14 @@ import Loading from '@components/Shared/Loading'
 import { useAtom } from 'jotai'
 import { toggleDrawerAtom, thoughtsAtom } from '../../jotai/atom'
 
-export default function Dashboard({ allThoughts }: { allThoughts: any }) {
+//Types
+import { ThoughtType } from '@/types/dashboard'
+
+export default function Dashboard({
+  allThoughts,
+}: {
+  allThoughts: ThoughtType[] | []
+}) {
   const { data: session } = useSession() as { data: Session }
   const [loading, setLoading] = React.useState(true)
   const [, setToggleDrawer] = useAtom(toggleDrawerAtom)
@@ -70,7 +77,7 @@ export async function getServerSideProps(context: any) {
     }
   }
 
-  let allThoughts: any[] = []
+  let allThoughts: ThoughtType | ThoughtType[] = []
 
   if (session && session.user && session.user.email) {
     const user = await prisma.user.findUnique({
@@ -81,7 +88,7 @@ export async function getServerSideProps(context: any) {
 
     if (!user) return
 
-    allThoughts = await prisma.thoughts.findMany({
+    allThoughts = (await prisma.thoughts.findMany({
       where: {
         userId: user.id,
       },
@@ -93,7 +100,7 @@ export async function getServerSideProps(context: any) {
         place: true,
         feel: true,
       },
-    })
+    })) as ThoughtType[] | []
   }
   return {
     props: {
