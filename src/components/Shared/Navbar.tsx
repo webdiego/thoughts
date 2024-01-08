@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { Session } from 'next-auth'
 import { signOut } from 'next-auth/react'
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
-import ThinkIcon from 'public/think.svg'
+import ThinkIcon from '../../../public/think.svg'
 import useOutsideClick from '../../hooks/useOutsideClick'
 import { motion } from 'framer-motion'
 export default function Navbar({ session }: { session: Session | null }) {
