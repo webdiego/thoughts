@@ -19,12 +19,10 @@ type ValidationSchema = z.infer<typeof validationSchema>
 
 export default function ThoughtForm({
   session,
-  thoughts,
   setThoughts,
   setToggleDrawer,
 }: {
   session: Session
-  thoughts: ThoughtType[]
   setThoughts: Dispatch<ThoughtType> | any
   setToggleDrawer: Dispatch<boolean>
 }) {
