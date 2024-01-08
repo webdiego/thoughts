@@ -13,6 +13,7 @@ export default async function handler(
   }
 
   const { title, thought, place, feel } = req.body
+
   const user = await prisma.user.findUnique({
     where: {
       email: session.user.email,
@@ -31,5 +32,19 @@ export default async function handler(
     },
   })
 
-  res.status(200).json({ message: 'Post created' })
+  let thoughts = await prisma.thoughts.findMany({
+    where: {
+      userId: user.id,
+    },
+    select: {
+      id: true,
+      title: true,
+      thought: true,
+      createdAt: true,
+      place: true,
+      feel: true,
+    },
+  })
+
+  res.status(200).json({ message: 'Post created', thoughts })
 }

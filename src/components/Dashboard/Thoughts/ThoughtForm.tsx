@@ -51,7 +51,8 @@ export default function ThoughtForm({
         feel,
       })
       .then((res) => {
-        setThoughts([...thoughts, data])
+        let newThoughts = [...res.data.thoughts]
+        setThoughts(newThoughts)
         setTimeout(() => {
           reset()
           setToggleDrawer(false)

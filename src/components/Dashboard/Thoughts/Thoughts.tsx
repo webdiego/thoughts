@@ -1,9 +1,11 @@
 import React, { Dispatch } from 'react'
 import EmptyState from '../EmptyState'
-import Thought from './Thought'
+import ThoughtCard from './ThoughtCard'
 
 //Types
 import { ThoughtType } from '@/types/dashboard'
+
+import { sortByNewest, sortByOldest } from '@utils/index'
 
 export default function Thoughts({
   thoughts,
@@ -14,24 +16,10 @@ export default function Thoughts({
 }) {
   const [sort, setSort] = React.useState('descend')
 
-  const sortByNewest = function () {
-    return thoughts?.sort((a: ThoughtType, b: ThoughtType) => {
-      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    })
-  }
-
-  const sortByOldest = function () {
-    return thoughts?.sort((a: ThoughtType, b: ThoughtType) => {
-      return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-    })
-  }
-
-  // Sort by by sort state on mount and when a new thought is added to the array
-
   if (sort === 'descend') {
-    sortByNewest()
+    sortByNewest(thoughts)
   } else {
-    sortByOldest()
+    sortByOldest(thoughts)
   }
 
   return (
@@ -77,7 +65,7 @@ export default function Thoughts({
           <div className="space-y-10">
             {thoughts?.map((singleThought: ThoughtType, i: number) => (
               <div key={i}>
-                <Thought {...{ singleThought }} />
+                <ThoughtCard {...{ singleThought }} />
               </div>
             ))}
           </div>

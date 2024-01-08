@@ -3,7 +3,7 @@ import Image from 'next/image'
 //Types
 import { ThoughtType } from '@/types/dashboard'
 
-export default function SingleThought({
+export default function ThoughtCard({
   singleThought,
 }: {
   singleThought: ThoughtType
@@ -15,9 +15,9 @@ export default function SingleThought({
     >
       <div className="flex items-center gap-x-4 text-xs">
         <time dateTime={singleThought.createdAt} className="text-gray-500">
-          {new Intl.DateTimeFormat('en-GB').format(
+          {/* {new Intl.DateTimeFormat('en-GB').format(
             singleThought.createdAt as unknown as Date
-          )}
+          )} */}
         </time>
       </div>
       <div className="max-w-lg text-sm mr-auto group-hover:text-black text-white w-full">
